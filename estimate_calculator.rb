@@ -1,12 +1,12 @@
 
 # markups base price 5%
 def flat_markup(base)
-  (base * 1.05)
+  (base * 1.05).round(2)
 end
 
 # markups base price 1.2% per worker on the job
 def worker_markup(base, workers)
-  flat_markup(base) * (workers * 0.012)
+  (flat_markup(base) * (workers * 0.012)).round(2)
 end
 
 def category_markup(category)
