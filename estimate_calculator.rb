@@ -10,21 +10,21 @@ def worker_markup(base, workers)
 end
 
 def category_markup(category)
-  category_markup = ''
-    if category == 'drugs'
-      category_markup = 0.075
-    elsif category == 'food'
-      category_markup =  0.13
-    elsif category == 'electronics'
-      category_markup =  0.02
-    else
-      category_markup = 0
-    end
+  category_markup = if category == 'drugs'
+                      0.075
+                    elsif category == 'food'
+                      0.13
+                    elsif category == 'electronics'
+                      0.02
+                    else
+                      0
+                    end
   category_markup
 end
 
 def estimate_calculator(base, workers, category)
-  (flat_markup(base) + worker_markup(base, workers) + (flat_markup(base) * category_markup(category))).round(2)
+  flat_markup = flat_markup(base)
+  worker_markup = worker_markup(base, workers)
+  category_markup = flat_markup * category_markup(category)
+  (flat_markup + worker_markup + category_markup).round(2)
 end
-
-puts category_markup('food')
